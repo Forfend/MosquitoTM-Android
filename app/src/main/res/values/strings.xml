@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mosquito</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="registration">registration</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="register_button">Registration</string>
+</resources>
