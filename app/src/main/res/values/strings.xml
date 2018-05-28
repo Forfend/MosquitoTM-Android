@@ -8,4 +8,19 @@
     <string name="last_name">Last name</string>
     <string name="confirm_password">Confirm password</string>
     <string name="register_button">Registration</string>
+    <string name="task">Tasks</string>
+    <string name="my_projects">My projects</string>
+    <string name="all_projects">All projects</string>
+    <string name="setting">Setting</string>
+    <string name="logout">Logout</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
