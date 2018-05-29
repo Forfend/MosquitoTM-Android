@@ -3,18 +3,23 @@
     <group>
         <item
             android:id="@+id/task"
+            android:icon="@drawable/ic_dashboard"
             android:title="@string/task" />
         <item
             android:id="@+id/my_projects"
+            android:icon="@drawable/ic_work"
             android:title="@string/my_projects" />
         <item
             android:id="@+id/all_projects"
+            android:icon="@drawable/ic_all_projects"
             android:title="@string/all_projects" />
         <item
             android:id="@+id/setting"
+            android:icon="@drawable/ic_setting"
             android:title="@string/setting" />
         <item
             android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
             android:title="@string/logout" />
     </group>
 </menu>
