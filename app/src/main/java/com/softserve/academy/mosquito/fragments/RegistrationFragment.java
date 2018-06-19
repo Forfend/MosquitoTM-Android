@@ -55,7 +55,6 @@ public class RegistrationFragment extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
                 Toast.makeText(getActivity(), "Status " + response.code(), Toast.LENGTH_SHORT).show();
                 getFragmentManager().beginTransaction().replace(R.id.fragments_container, new LoginFragment_()).commit();
-                //eraseFields();
             }
 
             @Override
@@ -66,11 +65,4 @@ public class RegistrationFragment extends Fragment {
 
     }
 
-    public void eraseFields() {
-        email.setText("");
-        firstName.setText("");
-        lastName.setText("");
-        password.setText("");
-        confirmPassword.setText("");
-    }
 }
