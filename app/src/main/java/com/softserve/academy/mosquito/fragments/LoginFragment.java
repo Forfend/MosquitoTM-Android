@@ -20,6 +20,7 @@ public class LoginFragment extends Fragment {
 
     @Click
     public void loginButtonClicked() {
+
         Intent intent = new Intent(getActivity(), TaskActivity_.class);
         startActivity(intent);
     }

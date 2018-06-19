@@ -8,7 +8,7 @@
     <string name="last_name">Last name</string>
     <string name="confirm_password">Confirm password</string>
     <string name="register_button">Registration</string>
-    <string name="task">Tasks</string>
+    <string name="project">Tasks</string>
     <string name="my_projects">My projects</string>
     <string name="all_projects">All projects</string>
     <string name="setting">Setting</string>

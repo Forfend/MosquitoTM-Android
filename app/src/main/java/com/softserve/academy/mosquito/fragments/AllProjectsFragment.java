@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.softserve.academy.mosquito.R;
-import com.softserve.academy.mosquito.adapter.TaskAdapter;
-import com.softserve.academy.mosquito.model.Task;
+import com.softserve.academy.mosquito.adapter.ProjectsAdapter;
+import com.softserve.academy.mosquito.model.Project;
 import com.softserve.academy.mosquito.network.configuration.RetrofitConfiguration;
 import com.softserve.academy.mosquito.network.service.TaskService;
 
@@ -15,7 +15,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,31 +24,29 @@ import retrofit2.Response;
 @EFragment(R.layout.fragment_all_projects)
 public class AllProjectsFragment extends Fragment {
 
-    private TaskAdapter taskAdapter;
+    private ProjectsAdapter projectsAdapter;
 
     @ViewById(R.id.adapter_tasks)
     RecyclerView recyclerView;
 
     @AfterViews
-    public void getTasks() {
+    public void getProjects() {
         TaskService service = RetrofitConfiguration.getRetrofit().create(TaskService.class);
-        Call<Task> call = service.getAllTask();
+        Call<List<Project>> call = service.getProjects();
 
-        call.enqueue(new Callback<Task>() {
+        call.enqueue(new Callback<List<Project>>() {
             @Override
-            public void onResponse(Call<Task> call, Response<Task> response) {
-                Task task = response.body();
-                List<Task> tasks = new ArrayList<>();
-                tasks.add(task);
-                taskAdapter = new TaskAdapter(tasks);
+            public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
+                List<Project> projects = response.body();
+                projectsAdapter = new ProjectsAdapter(projects);
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
 
                 recyclerView.setLayoutManager(manager);
-                recyclerView.setAdapter(taskAdapter);
+                recyclerView.setAdapter(projectsAdapter);
             }
 
             @Override
-            public void onFailure(Call<Task> call, Throwable t) {
+            public void onFailure(Call<List<Project>> call, Throwable t) {
                 Toast.makeText(getContext(), "Connection failed!", Toast.LENGTH_SHORT).show();
             }
         });

@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.softserve.academy.mosquito.R;
-import com.softserve.academy.mosquito.model.Task;
+import com.softserve.academy.mosquito.model.Project;
 
 import java.util.List;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
+public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.TaskViewHolder> {
 
-    private List<Task> tasks;
+    private List<Project> projects;
 
-    public TaskAdapter(List<Task> tasks) {
-        this.tasks = tasks;
+    public ProjectsAdapter(List<Project> projects) {
+        this.projects = projects;
     }
 
     @NonNull
@@ -30,30 +30,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        holder.taskName.setText(tasks.get(position).getName());
-        holder.taskEstimation.setText(tasks.get(position).getEstimation().toString());
-        holder.taskPriority.setText(tasks.get(position).getPriority());
-        holder.taskStatus.setText(tasks.get(position).getStatus());
+        holder.projectName.setText(projects.get(position).getName());
+        holder.projectPriority.setText(projects.get(position).getPriority().getTitle());
+        holder.projectStatus.setText(projects.get(position).getStatus().getStatus());
     }
 
     @Override
     public int getItemCount() {
-        return tasks.size();
+        return projects.size();
     }
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        TextView taskName;
-        TextView taskEstimation;
-        TextView taskPriority;
-        TextView taskStatus;
+        TextView projectName;
+        TextView projectPriority;
+        TextView projectStatus;
 
         public TaskViewHolder(View itemView) {
             super(itemView);
-            taskName = itemView.findViewById(R.id.task_name);
-            taskEstimation = itemView.findViewById(R.id.task_estimation);
-            taskPriority = itemView.findViewById(R.id.task_priority);
-            taskStatus = itemView.findViewById(R.id.task_status);
+            projectName = itemView.findViewById(R.id.task_name);
+            projectPriority = itemView.findViewById(R.id.task_priority);
+            projectStatus = itemView.findViewById(R.id.task_status);
         }
     }
 }

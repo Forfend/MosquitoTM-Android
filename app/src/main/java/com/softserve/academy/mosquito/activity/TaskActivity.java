@@ -54,7 +54,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.task:
+            case R.id.tasks:
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                         new TaskFragment_()).commit();
                 break;
