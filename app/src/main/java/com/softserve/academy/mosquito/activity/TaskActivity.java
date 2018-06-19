@@ -1,7 +1,6 @@
 package com.softserve.academy.mosquito.activity;
 
 
-import android.app.Application;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.softserve.academy.mosquito.R;
 import com.softserve.academy.mosquito.fragments.AllProjectsFragment_;
 import com.softserve.academy.mosquito.fragments.MyProjectsFragment_;
-import com.softserve.academy.mosquito.fragments.SettingFragment;
 import com.softserve.academy.mosquito.fragments.SettingFragment_;
 import com.softserve.academy.mosquito.fragments.TaskFragment_;
 
