@@ -1,6 +1,7 @@
 package com.softserve.academy.mosquito.activity;
 
 
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,10 +9,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.softserve.academy.mosquito.R;
 import com.softserve.academy.mosquito.fragments.AllProjectsFragment_;
+import com.softserve.academy.mosquito.fragments.LoginFragment_;
 import com.softserve.academy.mosquito.fragments.MyProjectsFragment_;
 import com.softserve.academy.mosquito.fragments.SettingFragment_;
 import com.softserve.academy.mosquito.fragments.TaskFragment_;
@@ -71,7 +72,10 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
                         new SettingFragment_()).commit();
                 break;
             case R.id.logout:
-                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor preferences = getSharedPreferences("Credentials",MODE_PRIVATE).edit();
+                preferences.remove("Authorization").remove("userId").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                        new LoginFragment_()).commit();
                 break;
 
         }

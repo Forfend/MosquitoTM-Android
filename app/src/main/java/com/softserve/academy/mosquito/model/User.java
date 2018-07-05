@@ -2,6 +2,7 @@ package com.softserve.academy.mosquito.model;
 
 public class User {
 
+    private Long id;
     private String email;
     private String firstName;
     private String lastName;
@@ -22,6 +23,10 @@ public class User {
         this.lastName = lastName;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getEmail() {

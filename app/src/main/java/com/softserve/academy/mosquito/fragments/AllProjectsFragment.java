@@ -1,5 +1,7 @@
 package com.softserve.academy.mosquito.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +34,9 @@ public class AllProjectsFragment extends Fragment {
     @AfterViews
     public void getProjects() {
         TaskService service = RetrofitConfiguration.getRetrofit().create(TaskService.class);
-        Call<List<Project>> call = service.getProjects();
+        SharedPreferences preferences = getActivity().getSharedPreferences("Credentials", Context.MODE_PRIVATE);
+
+        Call<List<Project>> call = service.getProjects(preferences.getString("Authorization",""));
 
         call.enqueue(new Callback<List<Project>>() {
             @Override

@@ -1,6 +1,6 @@
 package com.softserve.academy.mosquito.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
