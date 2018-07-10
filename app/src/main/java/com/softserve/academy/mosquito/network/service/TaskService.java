@@ -17,4 +17,7 @@ public interface TaskService {
     @GET("api/projects/owner/{owner_id}")
     Call<List<Project>> getAllProjectsForOwner(@Header("Authorization") String token,@Path("owner_id") long id);
 
+    @GET("api/task/workers-tasks/{worker_id}")
+    Call<List<Project>> getMyTasks(@Header("Authorization") String token, @Path("worker_id") long id);
+
 }

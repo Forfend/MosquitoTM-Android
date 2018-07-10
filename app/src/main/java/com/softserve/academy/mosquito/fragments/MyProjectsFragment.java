@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.softserve.academy.mosquito.R;
@@ -31,17 +32,20 @@ public class MyProjectsFragment extends Fragment {
     @ViewById(R.id.adapter_projects)
     RecyclerView recyclerView;
 
+    @ViewById
+    TextView myProjectInfo;
+
     @AfterViews
     public void getMyProjects() {
         final TaskService projects = RetrofitConfiguration.getRetrofit().create(TaskService.class);
         SharedPreferences preferences = getActivity().getSharedPreferences("Credentials", Context.MODE_PRIVATE);
 
         Call<List<Project>> call = projects.getAllProjectsForOwner(preferences.getString("Authorization", ""),
-                preferences.getLong("userId", 0));
+                preferences.getLong("userId", -1));
         call.enqueue(new Callback<List<Project>>() {
             @Override
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && !response.body().isEmpty()) {
                     List<Project> allProjects = response.body();
                     projectsAdapter = new ProjectsAdapter(allProjects);
                     RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
@@ -49,7 +53,7 @@ public class MyProjectsFragment extends Fragment {
                     recyclerView.setLayoutManager(manager);
                     recyclerView.setAdapter(projectsAdapter);
                 } else
-                    Toast.makeText(getContext(), "Failed retrieve projects!", Toast.LENGTH_SHORT).show();
+                    myProjectInfo.setText("You don`t have any projects");
             }
 
             @Override
