@@ -73,7 +73,6 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                         new LoginFragment_()).commit();
                 break;
-
         }
         drawerLayout.closeDrawer(GravityCompat.START);
 

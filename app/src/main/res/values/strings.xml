@@ -3,7 +3,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="registration">registration</string>
+    <string name="registration">Registration</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="confirm_password">Confirm password</string>
@@ -19,6 +19,14 @@
     <string name="title_section3">Section 3</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+    <string name="todo">TODO</string>
+    <string name="doing">DOING</string>
+    <string name="done">DONE</string>
+
+    <string name="no_my_tasks">You don`t have any tasks</string>
+    <string name="no_my_projects">You don`t have any projects</string>
+    <string name="no_projects">No projects</string>
 
     <string name="action_example">Example action</string>
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +40,7 @@ public class TaskFragment extends Fragment {
         TaskService taskService = RetrofitConfiguration.getRetrofit().create(TaskService.class);
         SharedPreferences preferences = getActivity().getSharedPreferences("Credentials", Context.MODE_PRIVATE);
 
-        Call<List<Task>> tasks = taskService.getMyTasks(preferences.getString("Authorization", ""),
+        Call<List<Task>> tasks = taskService.getMyTasks(preferences.getString("Authorization", null),
                 preferences.getLong("userId", -1));
 
         tasks.enqueue(new Callback<List<Task>>() {
@@ -49,14 +48,13 @@ public class TaskFragment extends Fragment {
             public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
                 if (response.isSuccessful() && !response.body().isEmpty()) {
                     List<Task> myTasks = response.body();
-                    Log.d("MyTasks",myTasks.toString());
                     taskAdapter = new TaskAdapter(myTasks);
                     RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
 
                     recyclerView.setLayoutManager(manager);
                     recyclerView.setAdapter(taskAdapter);
                 } else
-                    taskInfo.setText("You don`t have any tasks");
+                    taskInfo.setText(R.string.no_my_tasks);
             }
 
             @Override

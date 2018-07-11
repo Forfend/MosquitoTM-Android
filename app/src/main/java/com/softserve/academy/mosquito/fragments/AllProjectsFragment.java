@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.softserve.academy.mosquito.R;
@@ -31,22 +32,28 @@ public class AllProjectsFragment extends Fragment {
     @ViewById(R.id.adapter_tasks)
     RecyclerView recyclerView;
 
+    @ViewById
+    TextView allProjectsInfo;
+
     @AfterViews
     public void getProjects() {
         TaskService service = RetrofitConfiguration.getRetrofit().create(TaskService.class);
         SharedPreferences preferences = getActivity().getSharedPreferences("Credentials", Context.MODE_PRIVATE);
 
-        Call<List<Project>> call = service.getProjects(preferences.getString("Authorization",""));
+        Call<List<Project>> call = service.getProjects(preferences.getString("Authorization", null));
 
         call.enqueue(new Callback<List<Project>>() {
             @Override
             public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
-                List<Project> projects = response.body();
-                projectsAdapter = new ProjectsAdapter(projects);
-                RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
+                if (response.isSuccessful() && !response.body().isEmpty()) {
+                    List<Project> projects = response.body();
+                    projectsAdapter = new ProjectsAdapter(projects);
+                    RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
 
-                recyclerView.setLayoutManager(manager);
-                recyclerView.setAdapter(projectsAdapter);
+                    recyclerView.setLayoutManager(manager);
+                    recyclerView.setAdapter(projectsAdapter);
+                } else
+                    allProjectsInfo.setText(R.string.no_projects);
             }
 
             @Override

@@ -33,13 +33,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.taskName.setText(tasks.get(position).getName());
         switch (tasks.get(position).getStatus()) {
             case 1:
-                holder.taskStatus.setText("TODO");
+                holder.taskStatus.setText(R.string.todo);
                 break;
             case 2:
-                holder.taskStatus.setText("DOING");
+                holder.taskStatus.setText(R.string.doing);
                 break;
             case 3:
-                holder.taskStatus.setText("DONE");
+                holder.taskStatus.setText(R.string.done);
         }
     }
 

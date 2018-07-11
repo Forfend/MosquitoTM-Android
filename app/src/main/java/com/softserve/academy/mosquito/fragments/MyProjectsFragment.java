@@ -40,7 +40,7 @@ public class MyProjectsFragment extends Fragment {
         final TaskService projects = RetrofitConfiguration.getRetrofit().create(TaskService.class);
         SharedPreferences preferences = getActivity().getSharedPreferences("Credentials", Context.MODE_PRIVATE);
 
-        Call<List<Project>> call = projects.getAllProjectsForOwner(preferences.getString("Authorization", ""),
+        Call<List<Project>> call = projects.getAllProjectsForOwner(preferences.getString("Authorization", null),
                 preferences.getLong("userId", -1));
         call.enqueue(new Callback<List<Project>>() {
             @Override
@@ -53,7 +53,7 @@ public class MyProjectsFragment extends Fragment {
                     recyclerView.setLayoutManager(manager);
                     recyclerView.setAdapter(projectsAdapter);
                 } else
-                    myProjectInfo.setText("You don`t have any projects");
+                    myProjectInfo.setText(R.string.no_my_projects);
             }
 
             @Override
