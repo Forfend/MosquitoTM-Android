@@ -1,6 +1,7 @@
 package com.softserve.academy.mosquito.network.service;
 
 import com.softserve.academy.mosquito.model.Project;
+import com.softserve.academy.mosquito.model.Task;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface TaskService {
     @GET("api/projects/owner/{owner_id}")
     Call<List<Project>> getAllProjectsForOwner(@Header("Authorization") String token,@Path("owner_id") long id);
 
-    @GET("api/task/workers-tasks/{worker_id}")
-    Call<List<Project>> getMyTasks(@Header("Authorization") String token, @Path("worker_id") long id);
+    @GET("/api/tasks/workers-tasks/{worker_id}")
+    Call<List<Task>> getMyTasks(@Header("Authorization") String token, @Path("worker_id") long id);
 
 }

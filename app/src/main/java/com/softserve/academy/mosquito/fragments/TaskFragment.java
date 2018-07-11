@@ -5,12 +5,13 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.softserve.academy.mosquito.R;
-import com.softserve.academy.mosquito.adapter.ProjectsAdapter;
-import com.softserve.academy.mosquito.model.Project;
+import com.softserve.academy.mosquito.adapter.TaskAdapter;
+import com.softserve.academy.mosquito.model.Task;
 import com.softserve.academy.mosquito.network.configuration.RetrofitConfiguration;
 import com.softserve.academy.mosquito.network.service.TaskService;
 
@@ -27,7 +28,7 @@ import retrofit2.Response;
 @EFragment(R.layout.fragment_task)
 public class TaskFragment extends Fragment {
 
-    private ProjectsAdapter projectsAdapter;
+    private TaskAdapter taskAdapter;
 
     @ViewById(R.id.adapter_my_tasks)
     RecyclerView recyclerView;
@@ -40,26 +41,26 @@ public class TaskFragment extends Fragment {
         TaskService taskService = RetrofitConfiguration.getRetrofit().create(TaskService.class);
         SharedPreferences preferences = getActivity().getSharedPreferences("Credentials", Context.MODE_PRIVATE);
 
-        Call<List<Project>> tasks = taskService.getMyTasks(preferences.getString("Authorization", ""),
+        Call<List<Task>> tasks = taskService.getMyTasks(preferences.getString("Authorization", ""),
                 preferences.getLong("userId", -1));
 
-        tasks.enqueue(new Callback<List<Project>>() {
+        tasks.enqueue(new Callback<List<Task>>() {
             @Override
-            public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
+            public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
                 if (response.isSuccessful() && !response.body().isEmpty()) {
-                    List<Project> myTasks = response.body();
-
-                    projectsAdapter = new ProjectsAdapter(myTasks);
+                    List<Task> myTasks = response.body();
+                    Log.d("MyTasks",myTasks.toString());
+                    taskAdapter = new TaskAdapter(myTasks);
                     RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
 
                     recyclerView.setLayoutManager(manager);
-                    recyclerView.setAdapter(projectsAdapter);
+                    recyclerView.setAdapter(taskAdapter);
                 } else
                     taskInfo.setText("You don`t have any tasks");
             }
 
             @Override
-            public void onFailure(Call<List<Project>> call, Throwable t) {
+            public void onFailure(Call<List<Task>> call, Throwable t) {
                 Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show();
             }
         });

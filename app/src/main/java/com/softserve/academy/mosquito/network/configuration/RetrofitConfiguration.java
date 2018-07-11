@@ -7,7 +7,7 @@ public class RetrofitConfiguration {
 
     private static Retrofit retrofit;
 
-    private static final String BASE_URL = "http://4234145d.ngrok.io/";
+    private static final String BASE_URL = "http://ec983da4.ngrok.io/";
 
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
