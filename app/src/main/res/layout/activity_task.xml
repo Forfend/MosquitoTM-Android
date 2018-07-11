@@ -20,9 +20,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="@color/white"
-        app:itemTextColor="@color/dark_grey"
+        app:itemTextColor="@color/cardview_dark_background"
         app:menu="@menu/drawer_menu"
-        app:itemIconTint="@color/dark_grey">
+        app:itemIconTint="@color/cardview_dark_background">
 
 
     </android.support.design.widget.NavigationView>

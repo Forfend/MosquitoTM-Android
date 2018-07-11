@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
 
         Log.d("User loginnig", user.toString());
 
-        UserService userService = RetrofitConfiguration.getRetrofit().create(UserService.class);
+        final UserService userService = RetrofitConfiguration.getRetrofit().create(UserService.class);
         Call<User> login = userService.login(user);
 
         login.enqueue(new Callback<User>() {

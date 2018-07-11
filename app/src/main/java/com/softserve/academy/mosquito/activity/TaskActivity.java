@@ -14,7 +14,6 @@ import com.softserve.academy.mosquito.R;
 import com.softserve.academy.mosquito.fragments.AllProjectsFragment_;
 import com.softserve.academy.mosquito.fragments.LoginFragment_;
 import com.softserve.academy.mosquito.fragments.MyProjectsFragment_;
-import com.softserve.academy.mosquito.fragments.SettingFragment_;
 import com.softserve.academy.mosquito.fragments.TaskFragment_;
 
 import org.androidannotations.annotations.AfterViews;
@@ -44,6 +43,7 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                 new TaskFragment_()).commit();
+
     }
 
     @Override
@@ -67,13 +67,9 @@ public class TaskActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                         new AllProjectsFragment_()).commit();
                 break;
-            case R.id.setting:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                        new SettingFragment_()).commit();
-                break;
             case R.id.logout:
-                SharedPreferences.Editor preferences = getSharedPreferences("Credentials",MODE_PRIVATE).edit();
-                preferences.remove("Authorization").remove("userId").commit();
+                SharedPreferences.Editor preferences = getSharedPreferences("Credentials", MODE_PRIVATE).edit();
+                preferences.remove("Authorization").remove("userId").apply();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                         new LoginFragment_()).commit();
                 break;

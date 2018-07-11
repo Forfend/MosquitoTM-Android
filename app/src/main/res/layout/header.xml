@@ -12,5 +12,7 @@
         android:text="Mosquito"
         android:textColor="@color/colorAccent"
         android:textSize="50sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
+
 </LinearLayout>
